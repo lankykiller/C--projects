@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+    int luvut[10];
+    int n;
+    int suurin;
+
+    //kysytaan asiakkaalta 10 lukua
+
+    printf("Anna kymmenen lukua>");
+
+    //sijoitetaan luvut
+
+    for (n = 0; n < 10; n++) {
+    scanf("%d", &luvut[n]);
+    }
+
+    //selvitetään suurin luku
+    suurin = luvut[0];
+    for (n = 0; n < 10; n++) {
+    if (luvut[n] > suurin){
+            suurin = luvut[n];
+    }
+    }
+    //näytetään suurin luku
+    printf("Suurin syottamasi luku oli %d\n", suurin);
+
+return 0;
+}

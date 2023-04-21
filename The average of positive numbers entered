@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+    double luvut=0, keskiarvo =0.0, summa=0, lukumaara=0;
+
+    //for loop
+
+    for (luvut=0; luvut >=0;) {
+
+        summa = summa + luvut;
+
+        //printf("\nSyota kokonaisluku>");
+            scanf("%lf", &luvut);
+            lukumaara = lukumaara + 1;
+        }
+
+     //tehdaan laskutoimitukset ja tulostetaan tulos
+        keskiarvo = (double)summa / (lukumaara-1);
+        printf("\n%0.2lf", keskiarvo);
+
+        return 0;
+}

@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int onkoLukuTaydellien(int luku);
+
+int main(void)
+{
+    int vastaus, luku = 1;
+
+    while(luku < 10000){
+
+       vastaus = onkoLukuTaydellien(luku);
+
+        if(vastaus == 1)
+        printf("\nLuku %d on taydellinen luku", luku);
+
+
+        luku++;
+    }
+
+    return 0;
+}
+
+    //funktio mikä tutkii onko lukutäydellinen
+
+    int onkoLukuTaydellien(int luku){
+
+    int summa = 0, jakaja = 1, vastaus;
+
+
+
+        for(jakaja = 1; jakaja < luku; jakaja++){
+
+            if (luku % jakaja == 0)
+                summa = summa + jakaja ;
+}
+
+            if(summa == luku)
+            vastaus = 1;
+                else
+                vastaus = 0;
+
+
+        return vastaus;
+    }

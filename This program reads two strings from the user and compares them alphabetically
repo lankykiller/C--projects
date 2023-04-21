@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+#define koko 26
+
+int omajar(char *, char*);
+int paikka(char[]);
+
+int main()
+{
+    char eka[koko];
+    char toka[koko];
+    char peka[koko];
+    char ptoka[koko];
+    int p, a;
+
+    scanf("%s", eka);
+    scanf("%s", toka);
+    //kopioidaan
+    strcpy(peka, eka);
+    strcpy(ptoka, toka);
+
+    for(p=0;p<koko;p++){
+
+        peka[p] = tolower(peka[p]);
+        ptoka[p] = tolower(ptoka[p]);
+    }
+    //printtaa alkuperaiset muodot loppuun
+    a = omajar(peka, ptoka);
+    if(a == 0)
+        printf("%s < %s", eka, toka);
+    if(a == 1)
+        printf("%s > %s", eka, toka);
+    if(a == 2)
+        printf("%s == %s", eka, toka);
+
+    return 0;
+}
+
+    int omajar(char *jono, char *mjono){
+
+    char abc[26] = "abcdefghijklmnopqrstuvwxyz";
+    int p, pituus, pituus2, x, a, num1, num2;
+        //pituus loopille
+        pituus = strlen(jono);
+        pituus2 = strlen(mjono);
+        while(x<=pituus){
+        //saadaan arvo kun verrataan aakkosjonoon
+         for(p=0; p<koko; p++){
+               if(jono[x] == abc[p]){
+                    num1 = p;
+                break;}
+        }
+         for(p=0; p<koko; p++){
+               if(mjono[x] == abc[p]){
+                    num2 = p;
+                break;}
+        }
+
+        if(num1<num2){
+            a = 0;
+            break;}
+        else if(num1>num2){
+            a = 1;
+            break;}
+        else if(num1 == num2)
+            a = 2;
+            x++;
+        }
+        if(a == 2 && pituus<pituus2)
+            a = 0;
+        if(a == 2 && pituus>pituus2)
+            a = 1;
+
+    return a;
+    }

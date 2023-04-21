@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void etsiMerkkijononalusta(char[], char[], char[]);
+
+int main()
+{
+    char mjono[100];
+    char mjono2[100];
+    char loydetty[10]={'\0'};
+
+    printf("ensimmainen merkkijono>");
+    scanf("%s", mjono);
+
+    printf("toinen merkkijono>");
+    scanf("%s", mjono2);
+
+    etsiMerkkijononalusta(mjono, mjono2, loydetty);
+
+    printf("%s", loydetty);
+    return 0;
+}
+
+    void etsiMerkkijononalusta(char jono[], char jono2[], char loydetty[]){
+
+    int n = 0, p = 0;
+
+        for(n=0; jono[n]!='\0'; n++){
+
+            if(jono[n] == jono2[n]){
+
+                loydetty[p] = jono[n];
+                p++;
+            }
+            else
+            break;
+            }
+
+    loydetty[p] = '\0';
+
+    return loydetty;
+    }

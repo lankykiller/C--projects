@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+double laskeParkkiMaksu(double tunnit, double hinta);
+
+int main(void)
+{
+        double tunnit1, tunnit2, tunnit3;
+        double asiakas1, asiakas2, asiakas3, hinta1, hinta2, hinta3;
+        double yhteensaT, yhteensaV;
+
+  //otetaan ylos kolmen asiakkaan tunnit
+
+    scanf("%lf", &tunnit1);
+    //kutsutaan funktio ja lasketaan ekan asiakkaan parkkimaksu
+    asiakas1 = laskeParkkiMaksu(tunnit1, hinta1);
+
+
+    scanf("%lf", &tunnit2);
+    //kutustaan funktio ja lasketaan toisen asiakkaan parkkimaksu
+    asiakas2 = laskeParkkiMaksu(tunnit2, hinta2);
+
+
+    scanf("%lf", &tunnit3);
+    //kutsutaan funktio ja lasketaan toisen asiakkaan parkkimaksu
+    asiakas3 = laskeParkkiMaksu(tunnit3, hinta3);
+
+
+    //testi toimiiko kaava
+    //printf("%lf %lf %lf", asiakas1, asiakas2, asiakas3);
+
+    //lasketaan kaikki yhteen taulukkoa varten
+    yhteensaT = tunnit1 + tunnit2 + tunnit3;
+    yhteensaV = asiakas1 + asiakas2 + asiakas3;
+
+//tulostetaan taulukko jossa näkyy kaikki tarvittavat tiedot
+
+    printf("%8s%10s%11s", "Asiakas", "Tunnit", "Veloitus");
+    printf("\n       1 %9.2lf%11.2lf", tunnit1, asiakas1);
+    printf("\n       2 %9.2lf%11.2lf", tunnit2, asiakas2);
+    printf("\n       3 %9.2lf%11.2lf\n", tunnit3, asiakas3);
+    printf("YHTEENSA %9.2lf%11.2lf", yhteensaT, yhteensaV);
+
+    return 0;
+}
+//tehdaan funktio jolla lasketaan jokaisen asiakkaan parkki maksu
+//max 24h on vaan 10e, 3h on 2e ja yli menevä 0,5e 1h
+
+double laskeParkkiMaksu(double tunnit, double hinta){
+
+    if( tunnit <= 3){
+        hinta = 2;}
+        else if (tunnit > 3 && tunnit <=19){
+        hinta = (tunnit - 3)*0.5 + 2; }
+        else if(tunnit > 19 || tunnit <= 24)
+            hinta = 10;
+
+
+            return hinta;
+}

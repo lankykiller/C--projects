@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+//5 kpl kordinaatteja taulukkoon
+typedef struct{
+    int x;
+    int y;
+} kordi;
+
+kordi luepisteet(int nro);
+double etaisyys(kordi* pisteet);
+double lintutie(kordi* pisteet);
+
+int main()
+{
+    int p = 0;
+    double vastaus;
+    double lintu;
+    //nimi ja määrä 5 muistipaikkaa
+    kordi pisteet[4];
+
+    //luetaan pisteet
+    for(p=0; p<5; p++){
+        pisteet[p] = luepisteet(p);
+    }
+
+    //lasketaan etäisyys joka pisteen kautta
+   
+    vastaus = etaisyys(pisteet);
+
+    //suoraan ekasta vikaan
+    lintu = lintutie(pisteet);
+
+    //printataan tulokset
+    printf("\nEtaisyys mutkitellen %.3lf", vastaus);
+    printf("\nAlku ja loppupisteiden valinen etaisyys on %.3lf", lintu);
+
+    return 0;
+}
+    //luetaan pisteet
+    kordi luepisteet(int nro){
+
+    kordi temp;
+    //otetaan x ja y kordinaatit
+    scanf("%d", &temp.x);
+    scanf("%d", &temp.y);
+
+
+    return temp;
+    }
+
+    //etäisyys mutkitellen e = nelijiöjuuri x1 -x2 ^2 + y1 -y2 ^2
+    double etaisyys(kordi* pisteet){
+    // tietotyypi kordi
+    int p, i;
+    double keske;
+    double tulos = 0;
+
+        //loppuu kun laskettu 4-5
+        for(p=0, i=1; i<5; p++, i++){
+        //nelijyyri tähän sit
+        keske = sqrt(pow((pisteet[p].x - pisteet[i].x), 2) + pow((pisteet[p].y - pisteet[i].y),2));
+        tulos += keske;
+        }
+
+    return tulos;
+    }
+    //suoraan ekasta vikaan
+    double lintutie(kordi* pisteet){
+
+    double vastaus;
+
+    vastaus = sqrt(pow((pisteet[0].x - pisteet[4].x),2) + pow((pisteet[0].y - pisteet[4].y),2));
+
+    return vastaus;
+    }

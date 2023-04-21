@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+
+{int numero, kaannetty = 0, saasto, eka;
+
+   // printf("Anna 5 numeroinen kokonaisluku>");
+    scanf("%d", &numero);
+    eka = numero;
+
+   //käännetään numero
+   while(numero != 0){
+    saasto = numero % 10;
+    kaannetty = kaannetty * 10 + saasto;
+    numero /= 10;
+   }
+//palindromi tsekki ja onko 5 numeroa
+if(eka > 99999 || eka < 10000)
+    printf("Syote ei ole viisinumeroinen positiivinen kokonaisluku");
+   else if (eka == kaannetty)
+    printf("Luku %d on palindromi", eka);
+        else
+        printf("Luku %d ei ole palindromi", eka);
+
+    return 0;
+}

@@ -1,0 +1,92 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int randomluku(int luku);
+int jakovaiker(int x);
+
+int main()
+{
+
+    int luku, x, numero1, numero2, vastaus;
+
+    srand(time(NULL));
+
+    while( vastaus != -1){
+
+    x = jakovaiker(x);
+
+        if(x == 1){
+        numero1 = randomluku(luku);
+        numero2 = randomluku(luku);}
+            else{ //että vastaus on kokonaisluku jos jako
+                do{
+                numero1 = randomluku(luku);
+                numero2 = randomluku(luku);}
+                while(numero1 % numero2 != 0);
+            }
+
+        printf("Anna luku -1 lopettaaksesi\n");
+
+        if(x == 1)
+            printf("Paljonko on %d kertaa %d?", numero1, numero2);
+            else if(x == 0)
+            printf("Paljonko on %d jaettuna %d?", numero1, numero2);
+
+            scanf("%d", &vastaus);
+
+            if(x == 0){
+                if(vastaus == numero1/numero2 )
+                printf("Oikein!\n");
+                    else if(vastaus != -1){
+                        do{
+                    printf("Vaarin, yrita uudelleen>");
+                    scanf("%d", &vastaus);
+                        if(vastaus == -1)
+                            break;
+                        }
+                            while(vastaus != numero1/numero2);
+                        if (vastaus == numero1 / numero2)
+                            printf("Oikein!\n");
+                        }
+                        }
+                        else{
+                            if (vastaus == numero1*numero2)
+                                printf("Oikein!\n");
+                                else if(vastaus != -1){
+                                //loop kunnes tulee oikea vastaus tai lopetus
+                                    do{
+                                    printf("Vaarin, yrita uudelleen>");
+                                    scanf("%d", &vastaus);
+                                    if(vastaus == -1)
+                                        break;
+                    }
+                                        while(vastaus != numero1*numero2);
+
+                    if (vastaus == numero1*numero2)
+                        printf("Oikein!\n");
+                }
+                }
+
+}
+        return 0;
+}
+
+
+//funktio joka arpoo numeron välillä 1-9
+
+int randomluku(int luku){
+
+    luku = 1 + rand()%9;
+
+    return luku;
+}
+
+//funktio joka arpoo jako vai kerto
+
+int jakovaiker(int x){
+
+    x = rand()%2;
+
+    return x;
+}

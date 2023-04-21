@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void tulostataulukko(int[], int);
+void poista(int[], int, int);
+void lisaa(int[], int, int, int);
+
+int main()
+{
+    int p, uusluku;
+    int taulukko[20];
+    int koko = 20;
+
+    //loop joka lukee luvut
+    for(p=0; p < koko; p++){
+
+        printf("Syota %d. luku>", (p+1));
+
+        scanf("%d", &taulukko[p]);
+
+
+           if(taulukko[p]<10 || taulukko[p]>100){
+
+            poista(taulukko, koko, p);
+
+            lisaa(taulukko, koko, p, uusluku);
+           }
+
+    }
+
+            tulostataulukko(taulukko, koko);
+
+            return 0;
+}
+
+        //taulukon tulostus funktio vain ne jotka kerran
+        void tulostataulukko(int taulukko[], int koko){
+
+        int p = 0;
+        int x = 1;
+        int arvo = 0;
+
+            for(p=0; p<koko; p++){
+
+                arvo = 0;
+
+            for(x=0; x<koko; x++){
+
+            if(taulukko[p] == taulukko[x]){
+
+                arvo++;
+            }
+
+            }
+
+           if(arvo == 1)
+               printf("\n%d", taulukko[p]);
+            }
+
+
+
+        return;
+        }
+
+    //poistetaan funktio
+
+        void poista(int taulukko[], int koko, int p){
+
+
+         if(taulukko[p]<10 || taulukko[p]>100){
+
+            taulukko[p]= 1;
+            }
+
+        return;
+        }
+
+
+        //lisataan funktio
+
+        void lisaa(int taulukko[], int koko, int p, int uusluku){
+
+
+          while(uusluku<10 || uusluku>100){
+
+                if(taulukko[p]== 1 || taulukko[p]==uusluku){
+                    printf("\nEi kelpaa!\nYrita uudelleen >");
+                    scanf("%d", &uusluku);
+                    taulukko[p]= uusluku;
+                }
+            }
+
+        return;
+        }

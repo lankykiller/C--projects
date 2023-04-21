@@ -1,0 +1,121 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define pituus 50
+
+typedef struct{
+    char nimi[pituus];
+    int voitot;
+    int haviot;
+    int record; //voitot - häviöt
+    }latkaTietue;
+
+latkaTietue luejoukkue(int);
+void tulos(latkaTietue * joukkueet, int);
+void lajittele(latkaTietue * joukkueet, int);
+void tulosta(latkaTietue * joukkueet, int);
+void lueroskat(void);
+
+int main()
+{
+    int maara;
+    int p = 0;
+
+    printf("\nAnna joukueiden maara >");
+    scanf("%d", &maara);
+    lueroskat();
+
+    //annetaan nimi joukkueet ja maaritellaan koko
+    latkaTietue joukkueet[maara];
+
+    for(p=0; p<maara; p++){
+
+        joukkueet[p] = luejoukkue(p);
+    }
+
+    //lasketaan tulokset
+    tulos(joukkueet, maara);
+
+    //lajittelee joukkueet
+    lajittele(joukkueet, maara);
+
+    //tuloatua
+    tulosta(joukkueet, maara);
+
+    return 0;
+}
+    //tietotyyppi on latkaTietue
+    latkaTietue luejoukkue(int nro){
+    //temporary
+    latkaTietue temp;
+
+    printf("\nAnna %d. joukueen nimi>", nro+1);
+    fgets(temp.nimi, pituus, stdin);
+
+    if( temp.nimi[strlen(temp.nimi)-1 ] == '\n')
+        temp.nimi[strlen(temp.nimi)-1] = '\0';
+        else
+        lueroskat();
+
+    printf("\nAnna %d. joukkueen voittojen maara >", nro+1);
+    scanf("%d", &temp.voitot);
+
+    printf("\nAnna %d. joukkueiden havioiden maara >", nro+1);
+    scanf("%d", &temp.haviot);
+    //jos kussee nii lue roskar
+    lueroskat();
+
+    return temp;
+    }
+
+    void tulos(latkaTietue * joukkueet, int maara){
+
+        int p=0;
+
+        for(p=0; p<maara; p++){
+
+            joukkueet[p].record = joukkueet[p].voitot - joukkueet[p].haviot;
+        }
+
+    return;
+    }
+
+    void lajittele(latkaTietue * joukkueet, int maara){
+
+    int p, j;
+    int paikka;
+    latkaTietue temp;
+
+        for(p=0; p<maara; p++){
+            paikka = p;
+
+            for(j=p+1; j<maara; j++){
+
+                if(joukkueet[j].record > joukkueet[paikka].record){
+                    paikka = j;
+                }
+            }
+            if(paikka != p){
+                temp = joukkueet[paikka];
+                joukkueet[paikka] = joukkueet[p];
+                joukkueet[p] = temp;
+            }
+        }
+
+    }
+    void tulosta(latkaTietue * joukkueet, int maara){
+    int p;
+
+    printf("\n****************************************\n");
+    printf("\n         TULOSLISTA\n");
+    printf("\n****************************************\n");
+    for(p=0; p<maara; p++){
+
+    printf("\n %d. joukkue: %15s tilanne: %d voittoa ja %d tappiota", p+1, joukkueet[p].nimi, joukkueet[p].voitot, joukkueet[p].haviot );
+    }
+    return;
+    }
+
+    void lueroskat(void){
+        while( getc(stdin) != '\n');
+    }
